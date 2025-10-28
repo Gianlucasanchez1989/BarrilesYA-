@@ -12,10 +12,11 @@ export interface Kit {
 export interface Product {
   id: string;
   name: string;
-  emoji: string;
   imageUrl: string;
   kits: Kit[];
   discountTiers?: { quantity: number; percentage: number }[];
+  type?: 'individual' | 'combo';
+  comboComponents?: string[];
 }
 
 export interface CartItem {
@@ -25,4 +26,4 @@ export interface CartItem {
   timestamp: number;
 }
 
-export type Screen = 'home' | 'product' | 'cart' | 'confirmation';
+export type Screen = 'home' | 'product' | 'cart' | 'confirmation' | 'combos';

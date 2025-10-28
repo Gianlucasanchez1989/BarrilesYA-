@@ -57,6 +57,13 @@
         background-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, 0.1) 20%, rgba(255, 255, 255, 0.3) 60%, rgba(255, 255, 255, 0));
         animation: shimmer 1.5s infinite;
       }
+      @keyframes pulse-subtle {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+      }
+      .animate-pulse-subtle {
+        animation: pulse-subtle 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+      }
     </style>
   <script type="importmap">
 {
@@ -68,7 +75,7 @@
 }
 </script>
 </head>
-  <body class="bg-brand-dark-blue">
+  <body class="bg-gray-100">
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
   </body>
