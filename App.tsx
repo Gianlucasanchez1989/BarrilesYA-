@@ -859,6 +859,35 @@ function App() {
       startRect: DOMRect | null;
   }>({ active: false, imgSrc: null, startRect: null });
 
+  // --- History Navigation Logic ---
+  const navigate = useCallback((newScreen: Screen, product: Product | null = null) => {
+    const state = { screen: newScreen, selectedProductId: product?.id };
+    window.history.pushState(state, '');
+    setScreen(newScreen);
+    setSelectedProduct(product);
+  }, []); // setScreen and setSelectedProduct are stable, so no dependencies needed.
+
+  useEffect(() => {
+    // On initial load, replace current history state with our app's initial state.
+    window.history.replaceState({ screen: 'home', selectedProductId: null }, '');
+
+    const handlePopState = (event: PopStateEvent) => {
+      if (event.state) {
+        const { screen: newScreen, selectedProductId } = event.state;
+        setScreen(newScreen || 'home');
+        const product = selectedProductId ? allLiveProducts.find(p => p.id === selectedProductId) : null;
+        setSelectedProduct(product || null);
+      } else {
+        // Fallback for states before our app took over history.
+        setScreen('home');
+        setSelectedProduct(null);
+      }
+    };
+    
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, [allLiveProducts]); // Dependency is important to have the latest products list.
+
 
   useEffect(() => {
     const PRICE_CACHE_KEY = 'barrilesYaPrices';
@@ -1117,9 +1146,8 @@ function App() {
 
 
   const handleSelectProduct = useCallback((product: Product) => {
-    setSelectedProduct(product);
-    setScreen('product');
-  }, []);
+    navigate('product', product);
+  }, [navigate]);
   
   const handleUpdateCartQuantity = useCallback((timestamp: number, newQuantity: number) => {
     setCart(prevCart => prevCart.map(item => 
@@ -1184,45 +1212,41 @@ function App() {
   const handleOrderPlaced = useCallback(() => {
     setLastOrderInfo({ items: [...cart], discounts: automaticDiscounts });
     setCart([]);
-    setScreen('confirmation');
-  }, [cart, automaticDiscounts]);
+    navigate('confirmation');
+  }, [cart, automaticDiscounts, navigate, setCart, setLastOrderInfo]);
 
   const goHome = useCallback(() => {
-      setScreen('home');
-      setSelectedProduct(null);
-  }, []);
+      navigate('home');
+  }, [navigate]);
   
   const goToCart = useCallback(() => {
       setIsMiniCartExpanded(false);
-      setScreen('cart');
-  }, []);
+      navigate('cart');
+  }, [navigate, setIsMiniCartExpanded]);
 
   const goBackToProduct = useCallback(() => {
       if (cart.length > 0) {
         const lastItem = cart[cart.length-1];
         const lastProductInCart = allLiveProducts.find(p => p.id === lastItem.product.id);
-        setSelectedProduct(lastProductInCart || null);
-        setScreen('product');
+        navigate('product', lastProductInCart || null);
       } else {
         goHome();
       }
-  }, [cart, goHome, allLiveProducts]);
+  }, [cart, goHome, allLiveProducts, navigate]);
 
   const resetOrder = useCallback(() => {
     setLastOrderInfo({ items: [], discounts: {} });
     setCart([]);
-    setScreen('home');
-    setSelectedProduct(null);
-  }, []);
+    navigate('home');
+  }, [navigate, setCart, setLastOrderInfo]);
 
   const handleBackFromProduct = useCallback(() => {
     if (selectedProduct?.type === 'combo') {
-        setScreen('combos');
+        navigate('combos');
     } else {
-        setScreen('home');
+        navigate('home');
     }
-    setSelectedProduct(null);
-  }, [selectedProduct]);
+  }, [selectedProduct, navigate]);
 
   const renderScreen = () => {
     switch (screen) {
@@ -1236,7 +1260,7 @@ function App() {
         return <CombosScreen categories={productCategories} onSelectProduct={handleSelectProduct} onBack={goHome} />;
       case 'home':
       default:
-        return <HomeScreen categories={productCategories} onSelectProduct={handleSelectProduct} onSelectCombos={() => setScreen('combos')} />;
+        return <HomeScreen categories={productCategories} onSelectProduct={handleSelectProduct} onSelectCombos={() => navigate('combos')} />;
     }
   };
 
