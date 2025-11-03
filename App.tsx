@@ -1,4 +1,5 @@
 
+
 import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react';
 import { Product, Kit, CartItem, Screen } from './types';
 import { PRODUCT_CATEGORIES, ProductCategory } from './constants';
@@ -156,7 +157,7 @@ const ProductCard: React.FC<{ product: Product, onSelect: (p: Product) => void }
     return (
         <div
             onClick={() => onSelect(product)}
-            className="bg-white rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition-transform duration-300 cursor-pointer active:scale-100 flex flex-col"
+            className="bg-white rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition-transform duration-300 cursor-pointer active:scale-100 flex flex-col border border-brand-secondary/50"
         >
             <div className="relative aspect-square">
                 <img src={product.imageUrl} alt={product.name} className="w-full h-full object-cover" />
@@ -164,15 +165,15 @@ const ProductCard: React.FC<{ product: Product, onSelect: (p: Product) => void }
             <div className="p-2 sm:p-3 text-center flex flex-col justify-center items-center flex-grow">
                 {comboNameMatch ? (
                     <>
-                        <h2 className="text-base sm:text-lg font-bold text-slate-900 leading-tight">
+                        <h2 className="text-base sm:text-lg font-extrabold text-brand-dark-blue leading-tight">
                             {comboNameMatch[1]}
                         </h2>
-                        <p className="text-xs sm:text-sm font-normal text-slate-600 mt-1 leading-tight">
+                        <p className="text-xs sm:text-sm font-normal text-brand-dark-blue/70 mt-1 leading-tight">
                             {comboNameMatch[2].replace(/\+/g, ' + ')}
                         </p>
                     </>
                 ) : (
-                    <h2 className="text-base sm:text-lg font-bold text-slate-900">
+                    <h2 className="text-base sm:text-lg font-extrabold text-brand-dark-blue">
                         {product.name}
                     </h2>
                 )}
@@ -184,13 +185,13 @@ const ProductCard: React.FC<{ product: Product, onSelect: (p: Product) => void }
 const CategoryCard: React.FC<{ name: string, imageUrl: string, onClick: () => void }> = ({ name, imageUrl, onClick }) => (
     <div
         onClick={onClick}
-        className="bg-white rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition-transform duration-300 cursor-pointer active:scale-100 flex flex-col"
+        className="bg-white rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition-transform duration-300 cursor-pointer active:scale-100 flex flex-col border border-brand-secondary/50"
     >
         <div className="relative aspect-square">
             <img src={imageUrl} alt={name} className="w-full h-full object-cover" />
         </div>
         <div className="p-2 sm:p-3 text-center flex flex-col justify-center items-center flex-grow">
-            <h2 className="text-base sm:text-lg font-bold text-slate-900">
+            <h2 className="text-base sm:text-lg font-extrabold text-brand-dark-blue">
                 {name}
             </h2>
         </div>
@@ -211,8 +212,8 @@ const HomeScreen: React.FC<{
     return (
         <div className="animate-fade-in">
             <div className="text-center pt-4 sm:pt-8 px-4">
-                <h1 className="text-2xl sm:text-3xl font-bold text-brand-dark-blue mb-2">Elegí, combiná y disfrutá</h1>
-                <p className="text-base sm:text-lg text-gray-600 mb-8">Armá tu pedido como más te guste. Nosotros nos ocupamos del resto.</p>
+                <h1 className="text-2xl sm:text-3xl font-black text-brand-dark-blue mb-2">Elegí, combiná y disfrutá</h1>
+                <p className="text-base sm:text-lg text-brand-dark-blue/80 mb-8">Armá tu pedido como más te guste. Nosotros nos ocupamos del resto.</p>
             </div>
 
             <div className="max-w-3xl lg:max-w-5xl mx-auto px-4">
@@ -241,12 +242,12 @@ const CombosScreen: React.FC<{
   
     return (
         <div className="p-4 sm:p-8 animate-fade-in">
-            <button onClick={onBack} className="bg-slate-700 text-white font-bold py-2 px-4 rounded-lg hover:bg-slate-600 transition-colors duration-300 mb-6 inline-block transform active:scale-90">
+            <button onClick={onBack} className="bg-brand-light-blue text-brand-background font-bold py-2 px-4 rounded-lg hover:bg-brand-cyan hover:text-brand-dark-blue transition-colors duration-300 mb-6 inline-block transform active:scale-90">
                 &larr; Volver
             </button>
             <div className="text-center mb-8">
-                <h1 className="text-3xl sm:text-4xl font-bold text-brand-dark-blue inline-block pb-2 border-b-4 border-brand-cyan">{comboCategory?.name || 'Combos'}</h1>
-                <p className="text-lg text-gray-600 mt-2 max-w-2xl mx-auto">{comboCategory?.description || ''}</p>
+                <h1 className="text-3xl sm:text-4xl font-black text-brand-dark-blue inline-block pb-2 border-b-4 border-brand-cyan">{comboCategory?.name || 'Combos'}</h1>
+                <p className="text-lg text-brand-dark-blue/80 mt-2 max-w-2xl mx-auto">{comboCategory?.description || ''}</p>
             </div>
             <div className="max-w-4xl mx-auto px-4 sm:px-6">
                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8">
@@ -271,7 +272,7 @@ const DiscountProgressBar: React.FC<{
     if (currentQuantity >= maxTier.quantity) {
         return (
             <div className="h-10 flex items-center justify-center mt-3">
-                <p className="text-sm text-green-400 font-bold">¡Descuento máximo aplicado! 🎉</p>
+                <p className="text-sm text-green-500 font-bold">¡Descuento máximo aplicado! 🎉</p>
             </div>
         );
     }
@@ -283,7 +284,7 @@ const DiscountProgressBar: React.FC<{
         // Fallback, should be caught by the maxTier check above
          return (
             <div className="h-10 flex items-center justify-center mt-3">
-                <p className="text-sm text-green-400 font-bold">¡Descuento máximo aplicado! 🎉</p>
+                <p className="text-sm text-green-500 font-bold">¡Descuento máximo aplicado! 🎉</p>
             </div>
         );
     }
@@ -296,10 +297,10 @@ const DiscountProgressBar: React.FC<{
 
     return (
         <div className="h-10 mt-3 text-center">
-             <p className="text-xs text-gray-600 mb-1 font-semibold">
+             <p className="text-xs text-brand-dark-blue/80 mb-1 font-semibold">
                 ¡Agregá {itemsNeeded} más para un {nextTier.percentage}% de descuento!
             </p>
-            <div className="w-full bg-gray-200 rounded-full h-2.5">
+            <div className="w-full bg-brand-secondary rounded-full h-2.5">
                 <div 
                     className="bg-brand-cyan h-2.5 rounded-full transition-all duration-300" 
                     style={{ width: `${progress}%` }}
@@ -358,19 +359,19 @@ const ProductDetail: React.FC<{
 
   return (
     <div className="p-4 sm:p-8 animate-fade-in">
-      <button onClick={onBack} className="bg-slate-700 text-white font-bold py-2 px-4 rounded-lg hover:bg-slate-600 transition-colors duration-300 mb-6 inline-block transform active:scale-90">
+      <button onClick={onBack} className="bg-brand-light-blue text-brand-background font-bold py-2 px-4 rounded-lg hover:bg-brand-cyan hover:text-brand-dark-blue transition-colors duration-300 mb-6 inline-block transform active:scale-90">
         &larr; Volver
       </button>
-      <h1 className="text-3xl sm:text-4xl font-bold text-brand-dark-blue text-center mb-8">
+      <h1 className="text-3xl sm:text-4xl font-black text-brand-dark-blue text-center mb-8">
         {product.name}
       </h1>
 
-      <div className="flex justify-center mb-6 border-b-2 border-gray-200 max-w-lg mx-auto">
+      <div className="flex justify-center mb-6 border-b-2 border-brand-secondary max-w-lg mx-auto">
         {product.kits.map(kit => (
           <button 
             key={kit.id}
             onClick={() => setActiveKitId(kit.id)}
-            className={`flex-1 px-2 py-3 text-xs sm:text-base font-bold transition-all duration-300 border-b-4 ${activeKitId === kit.id ? 'border-brand-cyan text-brand-dark-blue' : 'border-transparent text-gray-500 hover:text-brand-dark-blue'}`}
+            className={`flex-1 px-2 py-3 text-xs sm:text-base font-bold transition-all duration-300 border-b-4 ${activeKitId === kit.id ? 'border-brand-cyan text-brand-cyan' : 'border-transparent text-brand-dark-blue/60 hover:text-brand-dark-blue'}`}
           >
             {kit.name.replace(' (10L)', '')}
           </button>
@@ -411,10 +412,10 @@ const ProductDetail: React.FC<{
           return (
             <div key={kit.id} className="max-w-md mx-auto lg:max-w-4xl animate-fade-in">
               <div 
-                className={`bg-white rounded-lg p-6 flex flex-col lg:flex-row lg:gap-8 shadow-lg relative ${isMostPopular && !isCombo ? 'border-2 border-brand-cyan' : 'border-2 border-transparent'}`}
+                className={`bg-white rounded-lg p-6 flex flex-col lg:flex-row lg:gap-8 shadow-xl relative ${isMostPopular && !isCombo ? 'border-2 border-brand-cyan' : 'border-2 border-brand-secondary/50'}`}
               >
                 {isMostPopular && !isExtraBarrelKit && !isCombo && (
-                  <div className="absolute top-0 right-0 bg-brand-cyan text-slate-900 text-xs sm:text-sm font-bold px-3 py-1 rounded-bl-lg rounded-tr-md">
+                  <div className="absolute top-0 right-0 bg-brand-cyan text-brand-dark-blue text-xs sm:text-sm font-bold px-3 py-1 rounded-bl-lg rounded-tr-md">
                     MÁS POPULAR
                   </div>
                 )}
@@ -428,12 +429,12 @@ const ProductDetail: React.FC<{
                 <div className="lg:w-3/5 flex flex-col justify-between">
                     {/* Top Section: Name & Description */}
                     <div>
-                        <h2 className="text-2xl font-bold text-brand-dark-blue mt-4 lg:mt-0">
+                        <h2 className="text-2xl font-extrabold text-brand-dark-blue mt-4 lg:mt-0">
                             {kit.name}
                         </h2>
-                        <p className="text-gray-600 mt-2">
+                        <p className="text-brand-dark-blue/80 mt-2">
                            {isExtraBarrelKit 
-                                ? <span className="font-semibold text-brand-light-blue">El precio incluye el kit completo más {recambioCount} barril{recambioCount === 1 ? '' : 'es'} de recambio. Total de barriles: {totalBarrels}.</span>
+                                ? <span className="font-semibold text-brand-cyan">El precio incluye el kit completo más {recambioCount} barril{recambioCount === 1 ? '' : 'es'} de recambio. Total de barriles: {totalBarrels}.</span>
                                 : kit.description
                             }
                         </p>
@@ -450,7 +451,7 @@ const ProductDetail: React.FC<{
                                 <div className="text-left h-[72px] flex flex-col justify-center">
                                     {applicableTier ? (
                                         <>
-                                            <p className="text-xl text-gray-500 line-through">{formatCurrency(dynamicPrice)}</p>
+                                            <p className="text-xl text-brand-dark-blue/50 line-through">{formatCurrency(dynamicPrice)}</p>
                                             <p className={`text-3xl font-bold ${isCombo ? 'text-green-500' : 'text-brand-dark-blue'}`}>{formatCurrency(finalPrice)}</p>
                                         </>
                                     ) : (
@@ -460,9 +461,9 @@ const ProductDetail: React.FC<{
                             )}
                             { !isCombo && (
                               <div className="flex items-center gap-1">
-                                  <button onClick={() => handleQuantityChange(kit.id, -1)} disabled={quantity <= 1} className="bg-slate-700 text-white rounded-full w-6 h-6 text-base font-bold hover:bg-slate-600 flex items-center justify-center transition-transform active:scale-90 disabled:opacity-50">-</button>
+                                  <button onClick={() => handleQuantityChange(kit.id, -1)} disabled={quantity <= 1} className="bg-brand-light-blue text-brand-background rounded-full w-6 h-6 text-base font-bold hover:bg-brand-cyan hover:text-brand-dark-blue flex items-center justify-center transition-transform active:scale-90 disabled:opacity-50">-</button>
                                   <span className="text-brand-dark-blue text-base font-bold w-6 text-center">{quantity}</span>
-                                  <button onClick={() => handleQuantityChange(kit.id, 1)} disabled={quantity >= 5} className="bg-slate-700 text-white rounded-full w-6 h-6 text-base font-bold hover:bg-slate-600 flex items-center justify-center transition-transform active:scale-90 disabled:opacity-50">+</button>
+                                  <button onClick={() => handleQuantityChange(kit.id, 1)} disabled={quantity >= 5} className="bg-brand-light-blue text-brand-background rounded-full w-6 h-6 text-base font-bold hover:bg-brand-cyan hover:text-brand-dark-blue flex items-center justify-center transition-transform active:scale-90 disabled:opacity-50">+</button>
                               </div>
                             )}
                         </div>
@@ -470,7 +471,7 @@ const ProductDetail: React.FC<{
                         { !isCombo && <DiscountProgressBar product={product} currentQuantity={totalBarrels} /> }
                         
                         {applicableTier && !isCombo && (
-                            <div className={`text-center font-bold text-green-400 my-3 text-lg ${unlockedAnimation[kit.id] ? 'animate-pop' : ''}`}>
+                            <div className={`text-center font-bold text-green-500 my-3 text-lg ${unlockedAnimation[kit.id] ? 'animate-pop' : ''}`}>
                                 ¡Estás ahorrando un {applicableTier.percentage}%!
                             </div>
                         )}
@@ -482,7 +483,7 @@ const ProductDetail: React.FC<{
                                     onAddToCart(product, kit, quantity, imageElement);
                                 }
                             }}
-                            className="mt-2 w-full bg-brand-cyan text-slate-900 font-bold py-3 px-4 rounded-lg hover:bg-brand-light-blue transition-all duration-300 text-lg disabled:bg-slate-600 disabled:cursor-not-allowed transform active:scale-90"
+                            className="mt-2 w-full bg-brand-cyan text-brand-dark-blue font-bold py-3 px-4 rounded-lg hover:bg-brand-light-blue hover:text-brand-background transition-all duration-300 text-lg disabled:bg-brand-light-blue/20 disabled:text-brand-secondary disabled:cursor-not-allowed transform active:scale-90"
                         >
                             Agregar al pedido
                         </button>
@@ -529,8 +530,8 @@ const OrderActions: React.FC<{ orderMessage: string, onAction?: () => void }> = 
     return (
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <button onClick={handleWhatsApp} className="bg-green-500 text-white font-bold py-3 px-4 rounded-lg hover:bg-green-600 transition-colors duration-300 text-base sm:text-lg">Enviar por WhatsApp</button>
-            <button onClick={handleCopy} className="bg-brand-light-blue text-white font-bold py-3 px-4 rounded-lg hover:bg-blue-600 transition-colors duration-300 text-base sm:text-lg relative">{copyStatus || 'Copiar Pedido'}</button>
-            <button onClick={handleShare} className="bg-brand-cyan text-slate-900 font-bold py-3 px-4 rounded-lg hover:bg-cyan-600 transition-colors duration-300 text-base sm:text-lg">Compartir</button>
+            <button onClick={handleCopy} className="bg-brand-light-blue text-brand-background font-bold py-3 px-4 rounded-lg hover:bg-brand-cyan hover:text-brand-dark-blue transition-colors duration-300 text-base sm:text-lg relative">{copyStatus || 'Copiar Pedido'}</button>
+            <button onClick={handleShare} className="bg-brand-cyan text-brand-dark-blue font-bold py-3 px-4 rounded-lg hover:bg-brand-light-blue hover:text-brand-background transition-colors duration-300 text-base sm:text-lg">Compartir</button>
         </div>
     );
 };
@@ -571,9 +572,9 @@ const Cart: React.FC<{
   if (cart.length === 0) {
     return (
       <div className="text-center p-8 flex flex-col items-center justify-center h-full animate-fade-in">
-        <h1 className="text-3xl font-bold text-brand-dark-blue mb-4">Tu pedido está vacío</h1>
-        <p className="text-gray-600 mb-8">Agregá alguna bebida para empezar.</p>
-        <button onClick={onBack} className="bg-brand-cyan text-slate-900 font-bold py-3 px-6 rounded-lg hover:bg-brand-light-blue transition-colors duration-300 text-lg transform active:scale-90">
+        <h1 className="text-3xl font-black text-brand-dark-blue mb-4">Tu pedido está vacío</h1>
+        <p className="text-brand-dark-blue/80 mb-8">Agregá alguna bebida para empezar.</p>
+        <button onClick={onBack} className="bg-brand-cyan text-brand-dark-blue font-bold py-3 px-6 rounded-lg hover:bg-brand-light-blue hover:text-brand-background transition-colors duration-300 text-lg transform active:scale-90">
           Elegir Bebida
         </button>
       </div>
@@ -587,17 +588,17 @@ const Cart: React.FC<{
 
   return (
     <div className="p-4 sm:p-8 animate-fade-in max-w-4xl mx-auto">
-      <h1 className="text-3xl sm:text-4xl font-bold text-brand-dark-blue text-center mb-6">Tu Pedido</h1>
-      <div className="bg-white rounded-lg p-6 mb-8 shadow-lg">
+      <h1 className="text-3xl sm:text-4xl font-black text-brand-dark-blue text-center mb-6">Tu Pedido</h1>
+      <div className="bg-white rounded-lg p-6 mb-8 shadow-xl border border-brand-secondary/50">
         <div className="space-y-6">
           {/* FIX: Use Object.keys().map for better type safety with index signatures. */}
           {Object.keys(groupedCart).map((productId: string) => {
             const group = groupedCart[productId];
             const discount = discounts[productId];
             return (
-              <div key={productId} className="border-b border-gray-200 last:border-b-0 pb-6 last:pb-0">
+              <div key={productId} className="border-b border-brand-secondary last:border-b-0 pb-6 last:pb-0">
                 <div className="flex justify-between items-center mb-4">
-                    <h2 className="text-2xl font-bold text-brand-dark-blue">{group.product.name}</h2>
+                    <h2 className="text-2xl font-extrabold text-brand-dark-blue">{group.product.name}</h2>
                 </div>
                 
                 <ul className="space-y-4 text-brand-dark-blue">
@@ -615,13 +616,13 @@ const Cart: React.FC<{
                               <button 
                                 onClick={() => onUpdateQuantity(item.timestamp, Math.max(1, Number(item.quantity || 1) - 1))} 
                                 disabled={Number(item.quantity) <= 1}
-                                className="bg-slate-700 text-white rounded-full w-8 h-8 text-xl font-bold hover:bg-slate-600 transition-transform active:scale-90 disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="bg-brand-light-blue text-brand-background rounded-full w-8 h-8 text-xl font-bold hover:bg-brand-cyan hover:text-brand-dark-blue transition-transform active:scale-90 disabled:opacity-50 disabled:cursor-not-allowed"
                               >-</button>
                               <span className="text-brand-dark-blue text-xl font-bold w-8 text-center">{item.quantity}</span>
                               <button 
                                 onClick={() => onUpdateQuantity(item.timestamp, Math.min(5, Number(item.quantity || 0) + 1))} 
                                 disabled={Number(item.quantity) >= 5}
-                                className="bg-slate-700 text-white rounded-full w-8 h-8 text-xl font-bold hover:bg-slate-600 transition-transform active:scale-90 disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="bg-brand-light-blue text-brand-background rounded-full w-8 h-8 text-xl font-bold hover:bg-brand-cyan hover:text-brand-dark-blue transition-transform active:scale-90 disabled:opacity-50 disabled:cursor-not-allowed"
                               >+</button>
                             </div>
                           ) : null }
@@ -632,7 +633,7 @@ const Cart: React.FC<{
                   })}
                 </ul>
                 {discount && (
-                    <p className="text-green-400 text-right mt-2 font-medium">
+                    <p className="text-green-500 text-right mt-2 font-medium">
                         ¡Excelente! Estás ahorrando {formatCurrency(discount.amount)} en {group.product.name}.
                     </p>
                 )}
@@ -640,9 +641,9 @@ const Cart: React.FC<{
             );
           })}
         </div>
-        <div className="mt-6 pt-6 border-t border-gray-200 text-right text-xl text-brand-dark-blue space-y-2">
+        <div className="mt-6 pt-6 border-t border-brand-secondary text-right text-xl text-brand-dark-blue space-y-2">
             <p>Subtotal: <span>{formatCurrency(subtotal)}</span></p>
-            {totalDiscount > 0 && <p className="text-green-400">Ahorro por cantidad: <span>-{formatCurrency(totalDiscount)}</span></p>}
+            {totalDiscount > 0 && <p className="text-green-500">Ahorro por cantidad: <span>-{formatCurrency(totalDiscount)}</span></p>}
             <p className="text-2xl font-bold">Total: <span className="text-brand-cyan">{formatCurrency(total)}</span></p>
         </div>
       </div>
@@ -652,21 +653,21 @@ const Cart: React.FC<{
           onClick={handleWhatsAppClick}
           className="w-full bg-green-500 text-white font-bold py-4 px-6 rounded-lg hover:bg-green-600 transition-colors duration-300 text-xl shadow-lg transform active:scale-90 flex items-center justify-center gap-3"
         >
-          <svg xmlns="http://www.w.org/2000/svg" className="h-7 w-7" fill="currentColor" viewBox="0 0 24 24">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" fill="currentColor" viewBox="0 0 24 24">
             <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01s-.521.074-.792.372c-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
           </svg>
           <span>Finalizar y enviar</span>
         </button>
         <button
           onClick={onBack}
-          className="w-full bg-slate-700 text-white font-bold py-3 px-6 rounded-lg hover:bg-slate-600 transition-colors duration-300 text-lg transform active:scale-90"
+          className="w-full bg-brand-light-blue text-brand-background font-bold py-3 px-6 rounded-lg hover:bg-brand-cyan hover:text-brand-dark-blue transition-colors duration-300 text-lg transform active:scale-90"
         >
           + Agregar otra bebida
         </button>
       </div>
 
       <div className="text-center mt-8 flex justify-center items-center gap-4 sm:gap-6">
-        <button onClick={onBackToProduct} className="text-brand-cyan hover:text-cyan-300 font-bold py-2 px-4 transition-transform active:scale-90">
+        <button onClick={onBackToProduct} className="text-brand-cyan hover:text-brand-light-blue font-bold py-2 px-4 transition-transform active:scale-90">
           &larr; Volver al último producto
         </button>
         <button onClick={onReset} className="text-red-400 hover:text-red-500 font-bold py-2 px-4 transition-transform active:scale-90">
@@ -687,13 +688,13 @@ const ConfirmationScreen: React.FC<{ onReset: () => void; lastOrder: { items: Ca
     return (
         <div className="text-center p-4 sm:p-8 flex flex-col items-center animate-fade-in max-w-2xl mx-auto">
             <div className="text-5xl sm:text-6xl mb-4">🎉</div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-brand-dark-blue mb-4">¡Pedido generado con éxito!</h1>
-            <p className="text-gray-600 mb-8 text-base sm:text-lg">Gracias por tu pedido. Nos pondremos en contacto a la brevedad para coordinar la entrega.</p>
+            <h1 className="text-2xl sm:text-3xl font-black text-brand-dark-blue mb-4">¡Pedido generado con éxito!</h1>
+            <p className="text-brand-dark-blue/80 mb-8 text-base sm:text-lg">Gracias por tu pedido. Nos pondremos en contacto a la brevedad para coordinar la entrega.</p>
 
             {lastOrder.items.length > 0 && (
-                <div className="bg-white rounded-lg p-6 my-8 w-full text-left shadow-lg">
-                    <h2 className="text-xl font-bold text-brand-dark-blue mb-4 border-b border-gray-200 pb-2">Resumen de tu pedido</h2>
-                    <ul className="space-y-2 text-gray-700">
+                <div className="bg-white rounded-lg p-6 my-8 w-full text-left shadow-xl border border-brand-secondary/50">
+                    <h2 className="text-xl font-extrabold text-brand-dark-blue mb-4 border-b border-brand-secondary pb-2">Resumen de tu pedido</h2>
+                    <ul className="space-y-2 text-brand-dark-blue/90">
                         {lastOrder.items.map(item => (
                              <li key={item.timestamp} className="flex justify-between items-center">
                                 <span className="flex-grow pr-4">{item.kit.name} de {item.product.name} {item.product.type !== 'combo' ? `(x${item.quantity})` : ''}</span>
@@ -701,20 +702,20 @@ const ConfirmationScreen: React.FC<{ onReset: () => void; lastOrder: { items: Ca
                             </li>
                         ))}
                     </ul>
-                    <div className="mt-4 pt-4 border-t border-gray-200 text-right space-y-1">
+                    <div className="mt-4 pt-4 border-t border-brand-secondary text-right space-y-1">
                         <p className="text-brand-dark-blue">Subtotal: <span>{formatCurrency(subtotal)}</span></p>
-                        {totalDiscountAmount > 0 && <p className="text-green-400">Ahorro por cantidad: <span>-{formatCurrency(totalDiscountAmount)}</span></p>}
+                        {totalDiscountAmount > 0 && <p className="text-green-500">Ahorro por cantidad: <span>-{formatCurrency(totalDiscountAmount)}</span></p>}
                         <p className="text-xl font-bold text-brand-dark-blue">Total: <span className="text-brand-cyan">{formatCurrency(total)}</span></p>
                     </div>
                 </div>
             )}
             
-            <div className="mt-4 pt-6 border-t border-gray-200 w-full">
-                <p className="text-gray-500 mb-4">¿Necesitás reenviar el pedido?</p>
+            <div className="mt-4 pt-6 border-t border-brand-secondary w-full">
+                <p className="text-brand-dark-blue/80 mb-4">¿Necesitás reenviar el pedido?</p>
                 <OrderActions orderMessage={orderMessage} />
             </div>
 
-            <button onClick={onReset} className="bg-brand-cyan text-slate-900 font-bold py-3 px-6 rounded-lg hover:bg-brand-light-blue transition-colors duration-300 text-base sm:text-lg mt-8 transform active:scale-90">
+            <button onClick={onReset} className="bg-brand-cyan text-brand-dark-blue font-bold py-3 px-6 rounded-lg hover:bg-brand-light-blue hover:text-brand-background transition-colors duration-300 text-base sm:text-lg mt-8 transform active:scale-90">
                 Hacer un nuevo pedido
             </button>
         </div>
@@ -740,11 +741,11 @@ const MiniCart: React.FC<{
     return (
         <>
             {/* Expanded Panel */}
-            <div className={`fixed bottom-0 left-0 right-0 bg-white shadow-[0_-10px_30px_-15px_rgba(0,0,0,0.3)] rounded-t-2xl z-40 transition-transform duration-300 ease-in-out ${isExpanded ? 'translate-y-0' : 'translate-y-full'}`}>
-                <div className="p-4 border-b border-gray-200 flex justify-between items-center">
-                    <h3 className="font-bold text-xl text-brand-dark-blue">Tu Pedido ({itemCount})</h3>
-                    <button onClick={() => setIsExpanded(false)} className="p-2 rounded-full hover:bg-gray-100 transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div className={`fixed bottom-0 left-0 right-0 bg-brand-background/90 backdrop-blur-md shadow-[0_-10px_30px_-15px_rgba(0,0,0,0.1)] rounded-t-2xl z-40 transition-transform duration-300 ease-in-out border-t border-brand-secondary ${isExpanded ? 'translate-y-0' : 'translate-y-full'}`}>
+                <div className="p-4 border-b border-brand-secondary flex justify-between items-center">
+                    <h3 className="font-extrabold text-xl text-brand-dark-blue">Tu Pedido ({itemCount})</h3>
+                    <button onClick={() => setIsExpanded(false)} className="p-2 rounded-full hover:bg-brand-secondary transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-brand-dark-blue/70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
@@ -760,17 +761,17 @@ const MiniCart: React.FC<{
                                 <p className="text-brand-cyan font-bold">{formatCurrency(calculateItemTotal(item))}</p>
                              </div>
                              { !isCombo ? (
-                               <div className="flex items-center gap-1 bg-gray-100 rounded-full">
+                               <div className="flex items-center gap-1 bg-brand-secondary rounded-full">
                                   <button 
                                     onClick={() => onUpdateQuantity(item.timestamp, Math.max(1, Number(item.quantity) - 1))}
                                     disabled={Number(item.quantity) <= 1}
-                                    className="text-brand-dark-blue rounded-full w-6 h-6 text-lg font-bold hover:bg-gray-200 flex items-center justify-center transition-transform active:scale-90 disabled:opacity-50"
+                                    className="text-brand-dark-blue rounded-full w-6 h-6 text-lg font-bold hover:bg-brand-secondary/50 flex items-center justify-center transition-transform active:scale-90 disabled:opacity-50"
                                   >-</button>
                                   <span className="text-brand-dark-blue font-bold w-5 text-center">{item.quantity}</span>
                                   <button 
                                     onClick={() => onUpdateQuantity(item.timestamp, Math.min(5, Number(item.quantity) + 1))}
                                     disabled={Number(item.quantity) >= 5}
-                                    className="text-brand-dark-blue rounded-full w-6 h-6 text-lg font-bold hover:bg-gray-200 flex items-center justify-center transition-transform active:scale-90 disabled:opacity-50"
+                                    className="text-brand-dark-blue rounded-full w-6 h-6 text-lg font-bold hover:bg-brand-secondary/50 flex items-center justify-center transition-transform active:scale-90 disabled:opacity-50"
                                   >+</button>
                                </div>
                              ) : <div /> }
@@ -780,7 +781,7 @@ const MiniCart: React.FC<{
                       })}
                 </div>
 
-                <div className="p-4 border-t border-gray-200 bg-gray-50">
+                <div className="p-4 border-t border-brand-secondary bg-transparent">
                     <div className="flex justify-between items-center mb-4">
                         <span className="font-bold text-lg text-brand-dark-blue">Total Final:</span>
                         <span className="font-bold text-2xl text-brand-cyan">{formatCurrency(total)}</span>
@@ -797,7 +798,7 @@ const MiniCart: React.FC<{
                 className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 cursor-pointer group transition-all duration-300 ease-in-out ${isExpanded ? 'opacity-0 scale-75 pointer-events-none' : 'opacity-100 scale-100'}`}
             >
                 <div
-                    className="bg-brand-cyan text-slate-900 rounded-xl shadow-2xl py-3 px-5 flex flex-col items-center justify-center gap-1 transform transition-transform duration-200 group-hover:scale-110 group-active:scale-100 animate-pulse-subtle"
+                    className="bg-brand-cyan text-brand-dark-blue rounded-xl shadow-2xl py-3 px-5 flex flex-col items-center justify-center gap-1 transform transition-transform duration-200 group-hover:scale-110 group-active:scale-100 animate-pulse-subtle"
                 >
                     <div className="flex items-center gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -1282,13 +1283,13 @@ function App() {
           />
       )}
       <header className="p-4 sm:p-6 flex justify-between items-center">
-        <h1 className="text-2xl font-bold tracking-wider cursor-pointer" onClick={resetOrder}>BarrilesYA!</h1>
+        <h1 className="text-2xl font-black tracking-wider cursor-pointer" onClick={resetOrder}>BarrilesYA!</h1>
         <div ref={cartIconRef} onClick={goToCart} className={`relative cursor-pointer p-2 ${isCartShaking ? 'animate-shake' : ''}`}>
             <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
             </svg>
             {cartItemCount > 0 && (
-            <span className="absolute top-0 right-0 bg-brand-cyan text-slate-900 text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center transform translate-x-1/4 -translate-y-1/4">
+            <span className="absolute top-0 right-0 bg-brand-cyan text-brand-dark-blue text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center transform translate-x-1/4 -translate-y-1/4">
                 {cartItemCount}
             </span>
             )}
@@ -1299,7 +1300,7 @@ function App() {
             <div className="animate-fade-in">
               <div className="text-center pt-4 sm:pt-8 px-4 sm:px-8">
                 <h1 className="text-3xl sm:text-4xl font-bold text-brand-dark-blue mb-2">Buscando las mejores promos...</h1>
-                <p className="text-lg sm:text-xl text-gray-600 mb-8">Un momento, por favor.</p>
+                <p className="text-lg sm:text-xl text-brand-dark-blue/80 mb-8">Un momento, por favor.</p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto px-4 sm:px-0">
@@ -1312,9 +1313,9 @@ function App() {
             renderScreen()
           )}
       </main>
-      <footer className="text-center p-4 text-gray-500 text-sm">
+      <footer className="text-center p-4 text-brand-dark-blue/60 text-sm">
         <p>&copy; {new Date().getFullYear()} BarrilesYA!. Todos los derechos reservados.</p>
-        {priceLastUpdated && <p className="text-gray-400 mt-1">Precios actualizados por última vez: {priceLastUpdated}</p>}
+        {priceLastUpdated && <p className="text-brand-dark-blue/50 mt-1">Precios actualizados por última vez: {priceLastUpdated}</p>}
       </footer>
        {feedbackMessage && (
           <div className={`fixed top-8 left-1/2 -translate-x-1/2 bg-green-500 text-white py-3 px-6 rounded-lg shadow-lg z-50 transition-all duration-300 ${isFeedbackVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-5'}`}>
