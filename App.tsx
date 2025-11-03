@@ -1,5 +1,3 @@
-
-
 import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react';
 import { Product, Kit, CartItem, Screen } from './types';
 import { PRODUCT_CATEGORIES, ProductCategory } from './constants';
@@ -1270,7 +1268,7 @@ function App() {
   const cartItemCount = cart.length;
 
   return (
-    <div className="min-h-screen font-sans text-brand-dark-blue relative">
+    <div className="min-h-screen font-sans text-brand-dark-blue relative bg-brand-background">
       {animationConfig.active && animationConfig.imgSrc && animationConfig.startRect && (
           <FlyingImage
               config={{ imgSrc: animationConfig.imgSrc, startRect: animationConfig.startRect }}
@@ -1282,17 +1280,30 @@ function App() {
               }}
           />
       )}
-      <header className="p-4 sm:p-6 flex justify-between items-center">
-        <h1 className="text-2xl font-black tracking-wider cursor-pointer" onClick={resetOrder}>BarrilesYA!</h1>
-        <div ref={cartIconRef} onClick={goToCart} className={`relative cursor-pointer p-2 ${isCartShaking ? 'animate-shake' : ''}`}>
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-            </svg>
-            {cartItemCount > 0 && (
-            <span className="absolute top-0 right-0 bg-brand-cyan text-brand-dark-blue text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center transform translate-x-1/4 -translate-y-1/4">
-                {cartItemCount}
-            </span>
-            )}
+      <header className="bg-brand-dark-blue text-white font-sans">
+        <div className="container mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
+            
+            <div className="flex-1 flex justify-start">
+                <div className="text-3xl font-black tracking-tighter cursor-pointer" onClick={resetOrder}>
+                    PUMP
+                </div>
+            </div>
+
+            <div className="flex-1 flex justify-end items-center gap-4 sm:gap-6">
+                <a href="https://calculadorabarrilitos.netlify.app/" target="_blank" rel="noopener noreferrer" className="text-sm sm:text-base font-semibold hover:opacity-75 transition-opacity duration-200">
+                    Calculadora
+                </a>
+                <div ref={cartIconRef} onClick={goToCart} className={`relative cursor-pointer p-2 ${isCartShaking ? 'animate-shake' : ''}`}>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                    {cartItemCount > 0 && (
+                        <span className="absolute top-0 right-0 bg-brand-cyan text-brand-dark-blue text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center transform translate-x-1/4 -translate-y-1/4">
+                            {cartItemCount}
+                        </span>
+                    )}
+                </div>
+            </div>
         </div>
       </header>
       <main className="container mx-auto px-0 sm:px-4 pb-48 sm:pb-8">
