@@ -1,3 +1,4 @@
+
 import { Product } from './types';
 
 // Nueva interfaz para agrupar productos
@@ -14,11 +15,6 @@ const BEBIDAS_INDIVIDUALES: Product[] = [
     name: 'Cerveza artesanal',
     imageUrl: 'https://i.imgur.com/rIaCQC9.jpeg',
     type: 'individual',
-    discountTiers: [
-        { quantity: 2, percentage: 5 },
-        { quantity: 3, percentage: 10 },
-        { quantity: 4, percentage: 15 },
-    ],
     kits: [
       {
         id: 'kit-completo-cerveza',
@@ -55,10 +51,6 @@ const BEBIDAS_INDIVIDUALES: Product[] = [
     name: 'Fernet con coca',
     imageUrl: 'https://i.imgur.com/LZqB5FT.jpeg',
     type: 'individual',
-    discountTiers: [
-        { quantity: 2, percentage: 5 },
-        { quantity: 3, percentage: 10 },
-    ],
     kits: [
       {
         id: 'kit-completo-fernet',
@@ -95,11 +87,6 @@ const BEBIDAS_INDIVIDUALES: Product[] = [
     name: 'Gin tonic',
     imageUrl: 'https://i.imgur.com/oCl0lDc.jpeg',
     type: 'individual',
-    discountTiers: [
-        { quantity: 2, percentage: 5 },
-        { quantity: 3, percentage: 10 },
-        { quantity: 4, percentage: 15 },
-    ],
     kits: [
        {
         id: 'kit-completo-gin',
@@ -140,7 +127,6 @@ const COMBOS: Product[] = [
     imageUrl: 'https://i.imgur.com/ogS35Ej.jpeg',
     type: 'combo',
     comboComponents: ['fernet', 'cerveza'],
-    discountTiers: [{ quantity: 1, percentage: 10 }],
     kits: [
       {
         id: 'kit-completo-ruta-19',
@@ -168,7 +154,6 @@ const COMBOS: Product[] = [
     imageUrl: 'https://i.imgur.com/pfbrtm9.jpeg',
     type: 'combo',
     comboComponents: ['gin-tonic', 'cerveza'],
-    discountTiers: [{ quantity: 1, percentage: 10 }],
     kits: [
        {
         id: 'kit-completo-viento-sur',
@@ -196,7 +181,6 @@ const COMBOS: Product[] = [
     imageUrl: 'https://i.imgur.com/H0hAX06.jpeg',
     type: 'combo',
     comboComponents: ['fernet', 'gin-tonic'],
-    discountTiers: [{ quantity: 1, percentage: 10 }],
     kits: [
        {
         id: 'kit-completo-sunset-club',
@@ -224,7 +208,6 @@ const COMBOS: Product[] = [
     imageUrl: 'https://i.imgur.com/axyDJuD.jpeg',
     type: 'combo',
     comboComponents: ['cerveza', 'gin-tonic', 'fernet'],
-    discountTiers: [{ quantity: 1, percentage: 10 }],
     kits: [
       {
         id: 'kit-completo-casa-tres',

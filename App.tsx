@@ -1,3 +1,4 @@
+
 import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react';
 import { Product, Kit, CartItem, Screen } from './types';
 import { PRODUCT_CATEGORIES, ProductCategory } from './constants';
@@ -210,6 +211,9 @@ const HomeScreen: React.FC<{
     return (
         <div className="animate-fade-in">
             <div className="text-center pt-4 sm:pt-8 px-4">
+                <div className="inline-block bg-yellow-300 text-brand-dark-blue font-black px-4 py-1.5 rounded-full mb-4 shadow-sm text-sm sm:text-base border-2 border-brand-dark-blue transform -rotate-1 animate-pulse-subtle">
+                    EDICIÓN FIESTAS - PRECIOS REDONDOS 🎉
+                </div>
                 <h1 className="text-2xl sm:text-3xl font-black text-brand-dark-blue mb-2">Elegí, combiná y disfrutá</h1>
                 <p className="text-base sm:text-lg text-brand-dark-blue/80 mb-8">Armá tu pedido como más te guste. Nosotros nos ocupamos del resto.</p>
             </div>
@@ -915,7 +919,7 @@ function App() {
                         if (kit.id.includes('solo-barriles') && productPrices.barril !== undefined) {
                             newPrice = productPrices.barril;
                         }
-                    } else if (product.discountTiers) {
+                    } else {
                          if (kit.id.includes('solo-barril') && productPrices.barril !== undefined) {
                             newPrice = productPrices.barril;
                         }
