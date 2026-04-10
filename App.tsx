@@ -211,9 +211,6 @@ const HomeScreen: React.FC<{
     return (
         <div className="animate-fade-in">
             <div className="text-center pt-4 sm:pt-8 px-4">
-                <div className="inline-block bg-yellow-300 text-brand-dark-blue font-black px-4 py-1.5 rounded-full mb-4 shadow-sm text-sm sm:text-base border-2 border-brand-dark-blue transform -rotate-1 animate-pulse-subtle">
-                    EDICIÓN FIESTAS - PRECIOS REDONDOS 🎉
-                </div>
                 <h1 className="text-2xl sm:text-3xl font-black text-brand-dark-blue mb-2">Elegí, combiná y disfrutá</h1>
                 <p className="text-base sm:text-lg text-brand-dark-blue/80 mb-8">Armá tu pedido como más te guste. Nosotros nos ocupamos del resto.</p>
             </div>
