@@ -1,4 +1,3 @@
-
 import { Product } from './types';
 
 // Nueva interfaz para agrupar productos
@@ -46,6 +45,7 @@ const BEBIDAS_INDIVIDUALES: Product[] = [
       },
     ],
   },
+  /* DESACTIVADO TEMPORALMENTE: FERNET Y GIN
   {
     id: 'fernet',
     name: 'Fernet con coca',
@@ -118,6 +118,7 @@ const BEBIDAS_INDIVIDUALES: Product[] = [
       },
     ],
   },
+  */
 ];
 
 const COMBOS: Product[] = [
@@ -238,10 +239,12 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
         description: 'Elegí tu bebida preferida y armá el pedido a tu medida.',
         products: BEBIDAS_INDIVIDUALES,
     },
+    /* DESACTIVADO TEMPORALMENTE: COMBOS
     {
         id: 'combos',
         name: 'Combos y Promociones',
         description: 'Aprovechá nuestros combos con precios especiales para tu evento.',
         products: COMBOS,
     }
+    */
 ];
